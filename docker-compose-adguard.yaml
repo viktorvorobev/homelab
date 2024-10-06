@@ -1,0 +1,38 @@
+########################### NETWORKS
+networks:
+  homelabvlan:
+    name: homelabvlan
+    driver: macvlan
+    driver_opts:
+      parent: wlp0s20f3 # ip addr show
+    ipam:
+      driver: default
+      config:
+        - subnet: 192.168.0.0/24
+          ip_range: 192.168.0.224/29
+          gateway: 192.168.0.1
+          # aux_addresses:
+          #   adguard: 192.168.0.224
+
+ 
+########################### SERVICES
+services:
+  adguardhome:
+    container_name: adguardhome
+    image: adguard/adguardhome
+    restart: unless-stopped
+    networks:
+      homelabvlan:
+        ipv4_address: 192.168.0.225 # IP address inside the defined range
+    ports:
+      - 53:53/udp
+      - 67:67/udp 
+      - 68:68/tcp 
+      - 68:68/udp 
+      - 80:80/tcp 
+      - 443:443/tcp 
+      - 853:853/tcp 
+      - 3000:3000/tcp 
+    volumes:
+      - ./adguardhome/conf:/opt/adguardhome/conf
+      - ./adguardhome/work:/opt/adguardhome/work
