@@ -11,5 +11,5 @@ services:
       - PLEX_CLAIM=${PLEX_CLAIM}
     volumes:
       - ./plex/config:/config
-      - ${MOVIES_PATH}:/data
+      - ${PLEX_MOVIES_PATH}:/data
     restart: unless-stopped
