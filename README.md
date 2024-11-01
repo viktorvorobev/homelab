@@ -8,6 +8,7 @@ Common variables that are expected at `.env` file:
 PUID=1000
 PGID=1000
 TZ=Etc/UTC
+DOWNLOADS_PATH=/home/${USER}/Downloads
 ```
 
 ## Plex

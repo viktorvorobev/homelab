@@ -11,5 +11,20 @@ services:
       - PLEX_CLAIM=${PLEX_CLAIM}
     volumes:
       - ./plex/config:/config
-      - ${PLEX_MOVIES_PATH}:/data
+      - ${DOWNLOADS_PATH}:/data
+    restart: unless-stopped
+
+  qbittorrent:
+    image: lscr.io/linuxserver/qbittorrent:latest
+    network_mode: host
+    container_name: qbittorrent
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=${TZ}
+      - WEBUI_PORT=8080
+      - TORRENTING_PORT=6881
+    volumes:
+      - ./qbittorrent/appdata:/config
+      - ${DOWNLOADS_PATH}:/downloads
     restart: unless-stopped
