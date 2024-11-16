@@ -15,4 +15,7 @@ DOWNLOADS_PATH=/home/${USER}/Downloads
 
 Expected variables at `.env` file:
 - `PLEX_CLAIM` - token from https://www.plex.tv/claim/ to add the server to your account
-- `PLEX_MOVIES_PATH` - path to folders which contains movies that will be shown as available to you
+
+> [!warning]
+> - By default Plex will be looking for files at `DOWNLOADS_PATH`
+> - All movies and TV series should be in different folders e.g. `${DOWNLOADS}/movies` and `${DOWNLOADS}/tv_series`
