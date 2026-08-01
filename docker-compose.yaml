@@ -1,16 +1,14 @@
 services:
-  plex:
-    image: lscr.io/linuxserver/plex:latest
-    container_name: plex
+  jellyfin:
+    image: lscr.io/linuxserver/jellyfin:latest
+    container_name: jellyfin
     network_mode: host
     environment:
       - PUID=${PUID}
       - PGID=${PGID}
       - TZ=${TZ}
-      - VERSION=docker
-      - PLEX_CLAIM=${PLEX_CLAIM}
     volumes:
-      - ./plex/config:/config
+      - ./jellyfin/config:/config
       - ${DOWNLOADS_PATH}:/data
     restart: unless-stopped
 
